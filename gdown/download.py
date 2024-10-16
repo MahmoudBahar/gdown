@@ -12,7 +12,7 @@ from http.cookiejar import MozillaCookieJar
 
 import bs4
 import requests
-import tqdm
+import tqdm.notebook as tqdm
 
 from ._indent import indent
 from .exceptions import FileURLRetrievalError
@@ -342,19 +342,19 @@ def download(
         start_size = 0
 
     if not quiet:
-        print(log_messages.get("start", "Downloading...\n"), file=sys.stderr, end="")
+        print(log_messages.get("start", "Downloading...\n"), file=sys.stdout, end="")
         if resume:
-            print("Resume:", tmp_file, file=sys.stderr)
+            print("Resume:", tmp_file, file=sys.stdout)
         if url_origin != url:
-            print("From (original):", url_origin, file=sys.stderr)
-            print("From (redirected):", url, file=sys.stderr)
+            print("From (original):", url_origin, file=sys.stdout)
+            print("From (redirected):", url, file=sys.stdout)
         else:
-            print("From:", url, file=sys.stderr)
+            print("From:", url, file=sys.stdout)
         print(
             log_messages.get(
                 "output", f"To: {osp.abspath(output) if output_is_path else output}\n"
             ),
-            file=sys.stderr,
+            file=sys.stdout,
             end="",
         )
 
